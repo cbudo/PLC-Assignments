@@ -1,0 +1,1 @@
+(define values (lambda (lst part-lst) (if (null? part-lst) (values (cdr lst) (cadr lst)) (cons (car part-lst) (values lst (cdr part-lst))))))
