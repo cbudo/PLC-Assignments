@@ -1,0 +1,5 @@
+(define (compose L)
+	(if (null? L)
+		(lambda (x) x)
+		(lambda (x)
+			((car L) ((apply compose (cdr L)) x)))))

@@ -199,7 +199,7 @@
 	(define left (bt-max-int-call (cadr T)))
 	(define right (bt-max-int-call (caddr T)))
 	(cond [(number? T) T]
-		[(and (> (+ (car left) (car right)) (cadr left)) (> (+ (car left) (car right)) (cadr right)))
+		[(and (> (+ (acr left) (car right)) (cadr left)) (> (+ (car left) (car right)) (cadr right)))
 			(list (+ (car left) (car right)) (+ (car left) (car right)) (car T))]
 		[(and (equal? '() (caddr right)) (equal? '() (caddr left)))
 			(list (+ (car left) (car right)) (+ (car left) (car right)) (car T))]
