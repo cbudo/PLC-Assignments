@@ -1,4 +1,0 @@
-(define (Fahrenheit->Celsius fahrenheit)
-	(* (- fahrenheit 32) 5/9))
-(define (interval-contains? interval number)
-	(and (<= car(interval) number) (>= cadr(interval) number))

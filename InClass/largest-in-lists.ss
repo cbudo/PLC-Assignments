@@ -19,3 +19,11 @@
 		(if (andmap null? L)
 			#f
 			(apply max (apply append L)))))
+
+(define (list-index val ls)
+	(let find ([lst ls] [counter 0])
+		(if (null? lst)
+			0
+			(if (eq? (car lst) val)
+				counter
+				(find (cdr lst) (+ 1 counter))))))

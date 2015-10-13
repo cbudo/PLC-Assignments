@@ -9,10 +9,10 @@
 
 (define (add-vector vect vectAp start)
 	(cond [(eq? (vector-length vectAp) 0) ]
-		[(< start (vector-length vectAp)) 
+		[(< start (vector-length vectAp))
 			(vector-set! vect start (vector-ref vectAp start))
 			(add-vector vect vectAp (+ start 1))]))
-	
+
 (define (add-list vect lst n)
 	(if (not (null? lst))
 		(vector-set! vect n (car lst)))
@@ -27,13 +27,14 @@
 		(let ((lesser '()))
 			(let ((greater '()))
 				(cond
-					((null? l) '())
-					(else (map (lambda (ele)
-						(if (not (proc (car l) ele))
-							(set! lesser (cons ele lesser))
-							(set! greater (cons ele greater)))) (cdr l))
-					(append (qsort proc lesser) (cons (car l) (qsort proc greater))))
-					)))))
+					[(null? l) '()]
+					[else
+						(map (lambda (ele)
+							(if (not (proc (car l) ele))
+								(set! lesser (cons ele lesser))
+								(set! greater (cons ele greater)))) (cdr l))
+								(append (qsort proc lesser)
+									(cons (car l) (qsort proc greater)))])))))
 
 ; Problem 3
 (define (connected? g)
@@ -41,7 +42,7 @@
 	(define explored '())
 	(connected-helper g (list (car g)) nodes explored))
 (define (connected-helper G stack nodes explored)
-	(if (null? stack) 
+	(if (null? stack)
 		(if (chris-equal? nodes explored) #t #f)
 		(let ([node (car stack)])
 			(cond
@@ -56,8 +57,8 @@
 				((get-node (cdr G)) elem )))))
 
 ; Problem 4
-(define (reverse-it lst) 
-	(letrec ([helper 
+(define (reverse-it lst)
+	(letrec ([helper
 		(lambda (ls acc)
 			(if (null? ls)
 				acc
@@ -80,10 +81,10 @@
 		[(null? (cdr lst)) #t]
 		[(< (car lst) (cadr lst)) (check-order (cdr lst))]
 		[(>= (car lst) (cadr lst)) #f]))
-(define (check-right-tree element right-tree) 
+(define (check-right-tree element right-tree)
 	(if (null? right-tree)
 		#t
-		(and (< element (car right-tree)) 
+		(and (< element (car right-tree))
 			(and (check-right-tree (car right-tree) (caddr right-tree))
 				(check-left-tree (car right-tree) (cadr right-tree))))))
 (define (check-left-tree element left-tree)
@@ -118,7 +119,7 @@
 	(if (null? bst)
 		'()
 		(get-left bst)))
-(define (BST-right bst)	
+(define (BST-right bst)
 	(if (null? bst)
 		'()
 		(get-right bst)))
@@ -173,14 +174,14 @@
 	(if (null? rest)
 		el
 		(chris-max (cons el rest))))
-(define (chris-max ls) 
-	(let ((head (car ls)) (tail (cdr ls))) 
-		(if (null? tail) 
+(define (chris-max ls)
+	(let ((head (car ls)) (tail (cdr ls)))
+		(if (null? tail)
 			(if (number? head)
 				head
-				0) 
+				0)
 			(let ((max-in-tail (chris-max tail)))
-				(if (> head max-in-tail) 
+				(if (> head max-in-tail)
 					(if (number? head)
 						head
 						0)
@@ -192,8 +193,8 @@
 (define (bt-max-interior T)
 	(caddr (bt-max-int-call T)))
 (define (bt-max-int-call T)
-	(if (number? T) 
-		(list T T '()) 
+	(if (number? T)
+		(list T T '())
 		(bt-max-int-helper T)))
 (define (bt-max-int-helper T)
 	(define left (bt-max-int-call (cadr T)))
